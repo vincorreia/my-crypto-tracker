@@ -2,6 +2,8 @@ import React, {useState, useEffect} from "react";
 import "./Currency.css"
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import IsUp from "../../../components/IsUp";
+import refresher from "../../../functions/refresh";
 
 export default function CurrencyPage() {
 
@@ -25,13 +27,6 @@ export default function CurrencyPage() {
 
     const [refresh, setRefresh] = useState(0);
 
-
-    function refresher(): void{
-        setTimeout(()=> {
-            console.log("refreshed!")
-            setRefresh(refresh + 1);
-        }, 120000)
-    }
     useEffect(() => {
         axios.get(url).then(result => {
             const data = result.data[0];
@@ -50,19 +45,13 @@ export default function CurrencyPage() {
                 photo: photoUrl + data.symbol.toLowerCase()
             })
         })
-        refresher();
+        refresher(refresh, setRefresh);
     
     }, [refresh])
 
 
 
-    function isUp(number: number, label: string): React.ReactElement{
-        if(number > 0){
-            return <h4 className="green">{`▲ ${label} ${number}`}</h4>
-        }
-        
-        return <h4 className="red">{`▼ ${label} ${number}`}</h4>
-    }
+
 
     return (
         <div className="currency flex-row space-evenly">
@@ -82,9 +71,9 @@ export default function CurrencyPage() {
                         <h3>{"Market Cap: $ " + currency.market_cap_usd}</h3>
                         <h3>{"Price: $ " + currency.price_usd}</h3>
                         <div className="flex-row percentage-change">
-                            {isUp(currency.percent_change_1h, "1h:")}
-                            {isUp(currency.percent_change_24h, "24h:")}
-                            {isUp(currency.percent_change_7d, "7d:")}
+                            <IsUp number={currency.percent_change_1h} label="1h:"/>
+                            <IsUp number={currency.percent_change_24h} label="24h:"/>
+                            <IsUp number={currency.percent_change_7d} label="7d:"/>
                         </div>
                     </div>
                 </div>  

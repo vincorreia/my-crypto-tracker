@@ -5,5 +5,5 @@ export default interface Currency {
     price_usd: string;
     rank: number;
     symbol: string;
-    photo: string;
+    photo?: string;
 }
