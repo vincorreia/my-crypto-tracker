@@ -1,0 +1,25 @@
+.navbar{
+    padding: 1rem clamp(1rem, 3rem, 5rem);
+    background-color: #9a009a;
+    color: white;
+    position: sticky;
+}
+
+.navbar-links{
+    list-style: none;
+    align-items: center;
+    padding: 0;
+    gap: 1rem;
+}
+
+.search-input-wrapper{
+    gap: 1rem;
+}
+
+.search-input{
+    width: 15rem;
+    border-radius: 5px;
+    border: 0;
+    padding: 0.4rem 0.5rem;
+    outline: none;
+}
