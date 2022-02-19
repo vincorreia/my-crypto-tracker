@@ -5,6 +5,14 @@
     position: sticky;
 }
 
+.navbar a{
+    color:white;
+}
+
+.navbar a:hover{
+    opacity: 0.9;
+}
+
 .navbar-links{
     list-style: none;
     align-items: center;
