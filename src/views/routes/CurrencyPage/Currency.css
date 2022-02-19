@@ -9,3 +9,19 @@
 .currency-w80{
     width: 80%;
 }
+
+.percentage-change{
+    gap: 0.75rem
+}
+
+h4{
+    margin: 0;
+}
+
+.green{
+    color: green
+}
+
+.red{
+    color: red;
+}

@@ -1,13 +1,11 @@
 import React, {useState, useEffect} from "react";
 import "./Currency.css"
 import axios from "axios";
+import { useParams } from "react-router-dom";
 
-type Props = {
-    id: number;
-}
-export default function CurrencyPage(props: Props) {
+export default function CurrencyPage() {
 
-    const currencyId = String(props.id);
+    const currencyId = useParams().id;
 
     const url = "https://api.coinlore.net/api/ticker/?id=" + currencyId;
     const photoUrl = "https://cryptoicon-api.vercel.app/api/icon/"
@@ -18,6 +16,9 @@ export default function CurrencyPage(props: Props) {
         name: "",
         price_usd: "",
         rank: 0,
+        percent_change_24h: 0,
+        percent_change_1h: 0,
+        percent_change_7d: 0,
         symbol: "",
         photo: "",
     })
@@ -43,6 +44,9 @@ export default function CurrencyPage(props: Props) {
                 price_usd: price,
                 rank: data.rank,
                 symbol: data.symbol,
+                percent_change_24h: Number(data.percent_change_24h),
+                percent_change_1h: Number(data.percent_change_1h),
+                percent_change_7d: Number(data.percent_change_7d),
                 photo: photoUrl + data.symbol.toLowerCase()
             })
         })
@@ -50,23 +54,38 @@ export default function CurrencyPage(props: Props) {
     
     }, [refresh])
 
+
+
+    function isUp(number: number, label: string): React.ReactElement{
+        if(number > 0){
+            return <h4 className="green">{`▲ ${label} ${number}`}</h4>
+        }
+        
+        return <h4 className="red">{`▼ ${label} ${number}`}</h4>
+    }
+
     return (
         <div className="currency flex-row space-evenly">
         { currency.name === "" ? <h1>Loading...</h1> : 
         <React.Fragment>
                 <div className="currency-w100 flex-row align-flex-end">
                     <div className="currency-w80 flex-row space-evenly">
-                        <img src={currency.photo} alt={currency.name}/>
+                        <img width="150" height="150" src={currency.photo} alt={currency.name}/>
                     <div>
                         <h1>{currency.name}</h1>
-                        <h2> {"#" + currency.rank}</h2>
+                        <h2> {currency.symbol} {" - Rank #" + currency.rank}</h2>
                     </div>
                 </div>
             </div>
                 <div className="flex-row justify-center currency-w100">
                     <div>
-                    <h3>{"Market Cap: $ " + currency.market_cap_usd}</h3>
-                    <h3>{"Price: $ " + currency.price_usd}</h3>
+                        <h3>{"Market Cap: $ " + currency.market_cap_usd}</h3>
+                        <h3>{"Price: $ " + currency.price_usd}</h3>
+                        <div className="flex-row percentage-change">
+                            {isUp(currency.percent_change_1h, "1h:")}
+                            {isUp(currency.percent_change_24h, "24h:")}
+                            {isUp(currency.percent_change_7d, "7d:")}
+                        </div>
                     </div>
                 </div>  
         </React.Fragment>}
