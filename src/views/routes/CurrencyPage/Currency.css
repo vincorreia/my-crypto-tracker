@@ -1,9 +1,8 @@
 .currency{
     padding: clamp(1rem, 5rem, 10rem);
-    max-width: 100rem;
 }
-.currency-w100{
-    width: 100%;
+.currency-w50{
+    width: 50%;
 }
 
 .currency-w80{

@@ -7,6 +7,7 @@ export default function Content(props:{}) {
     return(
         <Routes>
             <Route path="/" element={<Home />}/>
+            <Route path="/:page" element={<Home />}/>
             <Route path="/currency/:id" element={<CurrencyPage />}/>
         </Routes>
     )

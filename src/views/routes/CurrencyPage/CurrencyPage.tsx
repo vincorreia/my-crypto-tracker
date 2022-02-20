@@ -57,7 +57,7 @@ export default function CurrencyPage() {
         <div className="currency flex-row space-evenly">
         { currency.name === "" ? <h1>Loading...</h1> : 
         <React.Fragment>
-                <div className="currency-w100 flex-row justify-flex-end">
+                <div className="flex-row justify-flex-end currency-w50">
                     <div className="currency-w80 flex-row space-evenly">
                         <img width="150" height="150" src={currency.photo} alt={currency.name}/>
                     <div>
@@ -66,7 +66,7 @@ export default function CurrencyPage() {
                     </div>
                 </div>
             </div>
-                <div className="flex-row justify-center currency-w100">
+                <div className="flex-row justify-center currency-w50">
                     <div>
                         <h3>{"Market Cap: $ " + currency.market_cap_usd}</h3>
                         <h3>{"Price: $ " + currency.price_usd}</h3>

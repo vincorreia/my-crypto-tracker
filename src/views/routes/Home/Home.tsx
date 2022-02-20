@@ -1,10 +1,11 @@
 import "./Home.css"
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Currency from "../../../interfaces/currency";
 import Coin from "../../../components/Coin";
 import refresher from "../../../functions/refresh";
+import Pagination from "../../../components/Pagination";
 
 // interface Coin {
 //     csupply: string;
@@ -31,24 +32,33 @@ export default function Home() {
     const [coins, setCoins] = useState<Currency[]>([]);
     const [refresh, setRefresh] = useState(0);
 
+    var page = useParams().page
+    if(!page){
+        page = "1";
+    }
+
+    const offset = (Number(page) * 50 - 50)
+
     useEffect(()=> {
-    axios.get("https://api.coinlore.net/api/tickers/?start=0&limit=50").then(result => {
+    axios.get(`https://api.coinlore.net/api/tickers/?start=${offset}&limit=50`).then(result => {
         const data = result.data.data;
         setCoins(data);
         refresher(refresh, setRefresh)
     })
-    }, [refresh])
+    }, [refresh, page])
+
 
     return (
         <div className="flex-column home-wrap">
             {coins.length < 50 ? "Loading" : coins.map((coin, i) => {
                 return (
-                <Link to={"/currency/" + coin.id}>
+                <Link key={coin.id} to={"/currency/" + coin.id}>
                     <div className="flex-row">
                         <Coin coin={{...coin, photo: `https://cryptoicon-api.vercel.app/api/icon/${coin.symbol.toLowerCase()}`}}/>
                     </div>
                 </Link>)
             })}
+            <Pagination page={Number(page)} maximum={140} />
         </div>
     )
 }
