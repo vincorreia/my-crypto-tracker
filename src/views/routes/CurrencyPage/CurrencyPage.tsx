@@ -47,7 +47,7 @@ export default function CurrencyPage() {
         })
         refresher(refresh, setRefresh);
     
-    }, [refresh])
+    }, [refresh, url])
 
 
 

@@ -45,7 +45,7 @@ export default function Home() {
         setCoins(data);
         refresher(refresh, setRefresh)
     })
-    }, [refresh, page])
+    }, [refresh, page, offset])
 
 
     return (
