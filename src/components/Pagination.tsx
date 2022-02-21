@@ -1,3 +1,4 @@
+import "./Pagination.css"
 import React from "react";
 import { Link } from "react-router-dom";
 
@@ -63,7 +64,15 @@ export default function Pagination(props:Props) {
 
         }
         pageNumbers.forEach(pageNumber => {
-            const pageButton = <Link to={`/${pageNumber}`}>{pageNumber}</Link>
+
+            var _class:string;
+            if(pageNumber === page){
+                _class = "pagination-number page-marker"
+            } else{
+                _class = "pagination-number"
+            }
+
+            const pageButton = <Link to={`/${pageNumber}`} className={_class}>{pageNumber}</Link>
             pageButtons.push(pageButton);
         })
 

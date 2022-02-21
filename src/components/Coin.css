@@ -1,0 +1,51 @@
+.coin-title{
+    font-size: clamp(1.5rem, 1.5vw, 2rem);
+    margin: 0;
+}
+
+.coin-subtitle{
+    font-size: clamp(1rem, 1vw, 1.25rem);
+    margin: 0;
+}
+
+.coin-image{
+    border-radius: 50%;
+}
+
+.up-or-down{
+    justify-content: space-between;
+    width: clamp(15rem, 20%, 30rem);
+    text-align: center;
+    font-size: clamp(0.75rem, 1vw, 1.5rem);
+}
+
+.mkt-cap-container{
+    width: clamp(15rem, 20%, 30rem);
+    text-align: right;
+    font-size: clamp(0.75rem, 1vw, 1.5rem);
+}
+
+.name-n-image{
+    width: clamp(15rem, 20%, 30rem);
+}
+
+@media (max-width: 1100px) {
+    .mkt-cap-container{
+        text-align: center;
+    }
+    .flex-column-w1100{
+        flex-direction: column;
+        align-content: center;
+    }
+    .name-n-image{
+        justify-content: center;
+    }
+    .coin-name{
+        width: 15rem;
+        text-align: center;
+    }
+    .up-or-down{
+        justify-content: center;
+        gap: 1rem;
+    }
+}

@@ -5,6 +5,7 @@ a{
 
 body{
     margin: 0;
+    font-family: Poppins, sans-serif;
 }
 
 .flex-row{
@@ -49,6 +50,6 @@ body{
     gap: 1rem;
 }
 
-.up-or-down{
-    gap: 0.5rem;
+.navbar{
+    position: sticky;
 }

@@ -1,9 +1,15 @@
 .card{
-    margin-bottom: clamp(1rem, 2rem, 3rem);
-    padding: 1rem clamp(1rem, 3rem, 5rem);
-    border: 1px solid black;
-    box-shadow: 0px 5px 25px -20px rgb(205, 0, 205);
-    width: 100%
+    margin-bottom: clamp(1.25rem, 1vw, 2rem);
+    padding: 1rem clamp(1rem, 1vw, 5rem);
+    box-shadow: 0px 5px 25px -23px rgb(205, 0, 205);
+    width: 100%;
+    border-bottom: 1px solid black;
+    border-top: 1px solid black;
+    transition: box-shadow ease-in-out;
+}
+
+.card:hover{
+    background-color: rgba(205, 0, 205, 0.1);
 }
 
 @media (max-width: 760px){
