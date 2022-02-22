@@ -1,5 +1,5 @@
 .coin-title{
-    font-size: clamp(1.5rem, 1.5vw, 2rem);
+    font-size: clamp(1.25rem, 1.25vw, 1.5rem);
     margin: 0;
 }
 
@@ -16,7 +16,7 @@
     justify-content: space-between;
     width: clamp(15rem, 20%, 30rem);
     text-align: center;
-    font-size: clamp(0.75rem, 1vw, 1.5rem);
+    font-size: clamp(0.75rem, 0.9vw, 1.5rem);
 }
 
 .mkt-cap-container{
@@ -46,6 +46,6 @@
     }
     .up-or-down{
         justify-content: center;
-        gap: 1rem;
+        gap: 0.5rem;
     }
 }

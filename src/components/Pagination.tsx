@@ -42,7 +42,6 @@ export default function Pagination(props:Props) {
         }
 
         pages.sort((a:number, b:number) => a - b);
-        console.log(pages)
         return pages;
     }
 
@@ -56,14 +55,14 @@ export default function Pagination(props:Props) {
         // we want to return less values than the complete amount that we usually do
 
         if(page > 3){
-        const minButton = <Link to={min}>⟪</Link>;
+        const minButton = <Link key={page - 3} to={min}>⟪</Link>;
         pageButtons.push(minButton);
 
-        const previousButton = <Link to={`/${page - 1}`}>⟨</Link>;
+        const previousButton = <Link key={page - 2} to={`/${page - 1}`}>⟨</Link>;
         pageButtons.push(previousButton);
 
         }
-        pageNumbers.forEach(pageNumber => {
+        pageNumbers.forEach((pageNumber, i) => {
 
             var _class:string;
             if(pageNumber === page){
@@ -72,15 +71,15 @@ export default function Pagination(props:Props) {
                 _class = "pagination-number"
             }
 
-            const pageButton = <Link to={`/${pageNumber}`} className={_class}>{pageNumber}</Link>
+            const pageButton = <Link key={i} to={`/${pageNumber}`} className={_class}>{pageNumber}</Link>
             pageButtons.push(pageButton);
         })
 
         if(page < maxNumber - 2){
         
-        const nextButton = <Link to={`/${page + 1}`}>⟩</Link>;
+        const nextButton = <Link key={page + 2} to={`/${page + 1}`}>⟩</Link>;
         pageButtons.push(nextButton);
-        const maxButton = <Link to={max}>⟫</Link>;
+        const maxButton = <Link key={page + 3} to={max}>⟫</Link>;
         pageButtons.push(maxButton);
         }
 

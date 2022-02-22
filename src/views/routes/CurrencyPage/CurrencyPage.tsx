@@ -7,6 +7,9 @@ import refresher from "../../../functions/refresh";
 
 export default function CurrencyPage() {
 
+    const api_key = process.env.REACT_APP_API_KEY;
+    const historical_data_url = "https://www.alphavantage.co/query?"
+
     const currencyId = useParams().id;
 
     const url = "https://api.coinlore.net/api/ticker/?id=" + currencyId;
@@ -24,6 +27,7 @@ export default function CurrencyPage() {
         symbol: "",
         photo: "",
     })
+
 
     const [refresh, setRefresh] = useState(0);
 
@@ -49,7 +53,23 @@ export default function CurrencyPage() {
     
     }, [refresh, url])
 
+    useEffect(() => {
+        const params = {
+            params: {
+            function: 'DIGITAL_CURRENCY_DAILY',
+            symbol: currency.symbol,
+            market: 'USD',
+            apikey: api_key as string
+        }}
 
+        if(params.params.symbol !== ""){
+            console.log(`Params: ${params.params.symbol}`);
+
+            axios.get(historical_data_url, params).then(result => {
+                console.log(result);
+            })
+        }  
+    }, [api_key, currency])
 
 
 
